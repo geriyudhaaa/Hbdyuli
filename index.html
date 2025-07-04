@@ -2,178 +2,174 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>HBD Yuliana</title>
+  <title>Happy Birthday Yuliana</title>
   <style>
-    * {
+    body {
       margin: 0;
       padding: 0;
-      box-sizing: border-box;
-      font-family: Arial, sans-serif;
-    }
-    body {
-      background: #000;
+      background: black;
       color: white;
-      overflow: hidden;
-    }
-    .page {
-      display: none;
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100vw;
-      height: 100vh;
-      justify-content: center;
-      align-items: center;
+      font-family: sans-serif;
       text-align: center;
-      padding: 2rem;
-    }
-    .active {
-      display: flex;
-      flex-direction: column;
-    }
-    .love {
-      position: absolute;
-      width: 20px;
-      height: 20px;
-      background: red;
-      transform: rotate(45deg);
-      animation: fall 8s linear infinite;
-    }
-    .love::before, .love::after {
-      content: '';
-      position: absolute;
-      width: 20px;
-      height: 20px;
-      background: red;
-      border-radius: 50%;
-    }
-    .love::before {
-      top: -10px;
-      left: 0;
-    }
-    .love::after {
-      top: 0;
-      left: -10px;
-    }
-    @keyframes fall {
-      0% { transform: translateY(-10%) rotate(45deg); opacity: 1; }
-      100% { transform: translateY(110vh) rotate(45deg); opacity: 0; }
-    }
-    .nav-buttons {
-      display: flex;
-      justify-content: center;
-      gap: 2rem;
-      margin-top: 2rem;
-    }
-    .nav-buttons button {
-      padding: 1rem;
-      border: none;
-      border-radius: 10px;
-      background: white;
-      color: red;
-      font-weight: bold;
-      font-size: 1rem;
-      cursor: pointer;
-    }
+      overflow: hidden;
+    }.page {
+  display: none;
+  padding: 40px 20px;
+  min-height: 100vh;
+}
+
+.active {
+  display: block;
+}
+
+.nav-buttons {
+  margin-top: 30px;
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+}
+
+button {
+  background-color: transparent;
+  border: none;
+  color: white;
+  font-size: 28px;
+  cursor: pointer;
+}
+
+h1 {
+  text-shadow: 2px 2px red;
+  font-size: 24px;
+}
+
+#countdown {
+  font-size: 32px;
+  margin-top: 20px;
+}
+
+.love {
+  position: absolute;
+  width: 20px;
+  height: 20px;
+  color: red;
+  animation: fall 10s linear infinite;
+}
+
+@keyframes fall {
+  0% { transform: translateY(-50px); opacity: 1; }
+  100% { transform: translateY(100vh); opacity: 0; }
+}
+
   </style>
 </head>
-<body>
-  <audio id="bgMusic" src="https://namaproject.vercel.app/cinnamon.mp3" autoplay loop></audio>  <div class="page active" id="page1">
-    <h1 style="font-size: 2rem; text-shadow: 2px 2px red;">HAPPY BIRTHDAY FOR 20 YEARS YULIANA❤️</h1>
-    <div style="font-size: 3rem; margin: 2rem 0;" id="countdown"></div>
-    <button onclick="goToPage(1)">Klik Disini</button>
-  </div>  <div class="page" id="page2">
-    <h1 style="text-shadow: 2px 2px red;">Tiup lilinnya 🕯️</h1>
+<body>  <!-- Musik autoplay --><audio id="bg-music" src="cinnamon.mp3" autoplay loop></audio>
+
+  <!-- Halaman 1 -->  <div class="page active" id="page1">
+    <h1>HAPPY BIRTHDAY FOR 20 YEARS YULIANA❤️</h1>
+    <div id="countdown"></div>
+    <div class="nav-buttons">
+      <button onclick="goToPage(1)">&#8594;</button>
+    </div>
+  </div>  <!-- Halaman 2 -->  <div class="page" id="page2">
+    <h1>Tiup lilinnya 🕯️</h1>
     <div class="nav-buttons">
       <button onclick="goToPage(0)">&#8592;</button>
       <button onclick="goToPage(2)">&#8594;</button>
     </div>
-  </div>  <div class="page" id="page3">
-    <h1 style="text-shadow: 2px 2px red;">IH MULUTNYA BAUU😭</h1>
+  </div>  <!-- Halaman 3 -->  <div class="page" id="page3">
+    <h1>IH MULUTNYA BAUU😭</h1>
     <div class="nav-buttons">
       <button onclick="goToPage(1)">&#8592;</button>
-      <button onclick="goToPage(3)">&#8594;</button>
-    </div>
-  </div>  <div class="page" id="page4">
-    <p style="font-size: 1rem; text-shadow: 1px 1px red;">
-      HAPPY BIRTHDAY YULIANA ❤️🎉<br><br>
-      Selamat atas bertambahnya umur ke 20 tahun semoga cita cita kamu tercapai, keinginan kamu terkabul rejekimu lancar sehat selalu.<br><br>
-      Aku pasti doain yang terbaik buat kamu dan keluarga mu. Jangan nyerah ya Yul, harus tetep semangat dan jangan pantang mundur.<br><br>
-      Aku bangga, bangga banget liat kamu udah bisa sampe titik ini.
-    </p>
-    <div class="nav-buttons">
-      <button onclick="goToPage(2)">&#8592;</button>
       <button onclick="goToPage(4)">&#8594;</button>
     </div>
-  </div>  <div class="page" id="page5">
-    <p style="font-size: 1rem; text-shadow: 1px 1px red;">
-      Aku juga seneng banget bisa jadi temen kamu bahkan pasangan kamu ya walaupun kamu ga ngakuin sih wkwk, tapi gapapa aku makasi atas memori yang kamu bikin di kehidupan aku.<br><br>
-      Memori yang gabakalan pernah keganti sama siapapun, pelukan hangatmu, manisnya muka kamu apalagi pas senyum behh, cubitan kamu, senderan kamu.
+  </div>  <!-- Halaman 4 -->  <div class="page" id="page4">
+    <h1>HAPPY BIRTHDAY YULIANA ❤️🎉</h1>
+    <p style="text-shadow: 2px 2px red;">
+      Selamat atas bertambahnya umur ke 20 tahun<br>
+      Semoga cita cita kamu tercapai, keinginan kamu terkabul<br>
+      Rejekimu lancar sehat selalu, aku pasti doain yang terbaik buat kamu dan keluarga mu
     </p>
     <div class="nav-buttons">
       <button onclick="goToPage(3)">&#8592;</button>
       <button onclick="goToPage(5)">&#8594;</button>
     </div>
-  </div>  <div class="page" id="page6">
-    <p style="font-size: 1rem; text-shadow: 1px 1px red;">
-      Aku kangen kamu, tapi aku gamau disakitin lagi. Aku harus pergi sekarang, banyak yang perlu aku kejar. Semoga kita ketemu lagi entah dimana atau di kehidupan yang mana.
+  </div>  <!-- Halaman 5 -->  <div class="page" id="page5">
+    <p style="text-shadow: 2px 2px red;">
+      Jangan nyerah ya Yul, harus tetep semangat dan jangan pantang mundur<br>
+      Aku bangga, bangga banget liat kamu udah bisa sampe titik ini
     </p>
     <div class="nav-buttons">
       <button onclick="goToPage(4)">&#8592;</button>
       <button onclick="goToPage(6)">&#8594;</button>
     </div>
-  </div>  <div class="page" id="page7">
-    <p style="font-size: 1rem; text-shadow: 1px 1px red;">
-      Janji sama aku jangan sedih terus. Kedepannya harus jadi pribadi yang lebih baik lagi yaa yang lebih peduli ke orang lain, lebih sayang ke diri sendiri, lebih sayang ke orang tua.<br><br>
-      Lebih bisa ngendaliin emosi pas lagi marah, lebih bisa ngehargain usaha orang lain. Jangan jadi orang jahat lagii yaa, ily uly❤️
+  </div>  <!-- Halaman 6 -->  <div class="page" id="page6">
+    <p style="text-shadow: 2px 2px red;">
+      Aku juga seneng banget bisa jadi temen kamu bahkan pasangan kamu<br>
+      Ya walaupun kamu ga ngakuin sih wkwk, tapi gapapa
     </p>
     <div class="nav-buttons">
       <button onclick="goToPage(5)">&#8592;</button>
+      <button onclick="goToPage(7)">&#8594;</button>
+    </div>
+  </div>  <!-- Halaman 7 -->  <div class="page" id="page7">
+    <p style="text-shadow: 2px 2px red;">
+      Aku makasi atas memori yang kamu bikin di kehidupan aku<br>
+      Memori yang gabakalan pernah keganti sama siapapun
+    </p>
+    <div class="nav-buttons">
+      <button onclick="goToPage(6)">&#8592;</button>
+      <button onclick="goToPage(8)">&#8594;</button>
+    </div>
+  </div>  <!-- Halaman 8 -->  <div class="page" id="page8">
+    <p style="text-shadow: 2px 2px red;">
+      Aku harus pergi sekarang, banyak yang perlu aku kejar<br>
+      Semoga kita ketemu lagi entah dimana atau di kehidupan yang mana
+    </p>
+    <div class="nav-buttons">
+      <button onclick="goToPage(7)">&#8592;</button>
+      <button onclick="goToPage(9)">&#8594;</button>
+    </div>
+  </div>  <!-- Halaman 9 -->  <div class="page" id="page9">
+    <p style="text-shadow: 2px 2px red;">
+      Janji sama aku jangan sedih terus, kedepannya harus jadi pribadi yang lebih baik<br>
+      ILY ULY❤️
+    </p>
+    <div class="nav-buttons">
+      <button onclick="goToPage(8)">&#8592;</button>
     </div>
   </div>  <script>
-    const pages = document.querySelectorAll('.page');
+    const pages = document.querySelectorAll(".page");
     let currentPage = 0;
 
     function goToPage(index) {
-      pages[currentPage].classList.remove('active');
+      pages[currentPage].classList.remove("active");
+      pages[index].classList.add("active");
       currentPage = index;
-      pages[currentPage].classList.add('active');
     }
 
     // Countdown
-    const countdownEl = document.getElementById('countdown');
-    const countTo = new Date("2025-07-08T00:00:00").getTime();
+    const countdown = document.getElementById("countdown");
+    const targetDate = new Date("2025-07-08T00:00:00").getTime();
 
     setInterval(() => {
       const now = new Date().getTime();
-      const distance = countTo - now;
-
+      const distance = targetDate - now;
       const days = Math.floor(distance / (1000 * 60 * 60 * 24));
       const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
       const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
       const seconds = Math.floor((distance % (1000 * 60)) / 1000);
 
-      countdownEl.innerHTML = `${days}:${hours}:${minutes}:${seconds}`;
+      countdown.innerHTML = `${days} : ${hours} : ${minutes} : ${seconds}`;
     }, 1000);
 
-    // Love falling
-    setInterval(() => {
-      const love = document.createElement('div');
-      love.classList.add('love');
-      love.style.left = Math.random() * 100 + 'vw';
-      document.body.appendChild(love);
-      setTimeout(() => love.remove(), 8000);
-    }, 300);
-  </script></body>
-</html>
-<script>
-  document.addEventListener("DOMContentLoaded", function () {
-    const audio = document.getElementById("bg-music");
-    // Play saat halaman sudah aktif dan user klik pertama (agar tidak diblokir)
-    document.body.addEventListener("click", () => {
-      if (audio.paused) {
-        audio.play().catch((e) => console.log("Autoplay error:", e));
-      }
+    // Autoplay fallback for some browsers
+    document.addEventListener("DOMContentLoaded", function () {
+      const audio = document.getElementById("bg-music");
+      document.body.addEventListener("click", () => {
+        if (audio.paused) {
+          audio.play().catch(err => console.log("Autoplay blocked:", err));
+        }
+      });
     });
-  });
-</script>
+  </script></body>
+    </html>
