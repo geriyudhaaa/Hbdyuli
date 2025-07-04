@@ -166,3 +166,14 @@
     }, 300);
   </script></body>
 </html>
+<script>
+  document.addEventListener("DOMContentLoaded", function () {
+    const audio = document.getElementById("bg-music");
+    // Play saat halaman sudah aktif dan user klik pertama (agar tidak diblokir)
+    document.body.addEventListener("click", () => {
+      if (audio.paused) {
+        audio.play().catch((e) => console.log("Autoplay error:", e));
+      }
+    });
+  });
+</script>
