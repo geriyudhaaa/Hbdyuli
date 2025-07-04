@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Hadiah untuk Yuliana</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      background-color: #000;
+      overflow: hidden;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      color: white;
+      text-shadow: 0 0 10px red, 0 0 20px red;
+      text-align: center;
+    }
+
+    .heart {
+      position: absolute;
+      width: 100px;
+      height: 90px;
+      background: red;
+      transform: rotate(-45deg);
+      animation: pulse 1s infinite;
+      opacity: 0.4;
+    }
+
+    .heart::before,
+    .heart::after {
+      content: "";
+      position: absolute;
+      width: 100px;
+      height: 90px;
+      background: red;
+      border-radius: 50%;
+    }
+
+    .heart::before {
+      top: -50px;
+      left: 0;
+    }
+
+    .heart::after {
+      left: 50px;
+      top: 0;
+    }
+
+    @keyframes pulse {
+      0% { transform: scale(1) rotate(-45deg); }
+      50% { transform: scale(1.1) rotate(-45deg); }
+      100% { transform: scale(1) rotate(-45deg); }
+    }
+
+    .screen {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+      height: 100vh;
+      position: relative;
+      z-index: 1;
+    }
+
+    .message {
+      font-size: 1.8em;
+      margin-bottom: 20px;
+    }
+
+    .countdown {
+      font-size: 2.5em;
+      font-weight: bold;
+      animation: pulse 1s infinite;
+      margin-bottom: 30px;
+      font-style: normal;
+    }
+
+    .continue-button {
+      padding: 15px 30px;
+      font-size: 1em;
+      background-color: red;
+      border: none;
+      border-radius: 10px;
+      color: white;
+      cursor: pointer;
+      box-shadow: 0 0 10px red;
+      transition: transform 0.2s ease;
+      font-style: normal;
+    }
+
+    .continue-button:hover {
+      transform: scale(1.05);
+    }
+
+    .title {
+      font-size: 2em;
+    }
+
+    .name {
+      font-size: 3em;
+      font-weight: bold;
+      margin: 20px 0;
+    }
+
+    .candle {
+      position: relative;
+      margin: 30px auto;
+      width: 20px;
+      height: 100px;
+      background: #fff;
+      border-radius: 5px;
+    }
+
+    .flame {
+      position: absolute;
+      top: -30px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 20px;
+      height: 30px;
+      background: radial-gradient(ellipse at center, #ff0 0%, #f90 70%, transparent 80%);
+      border-radius: 50%;
+      animation: flicker 0.3s infinite;
+    }
+
+    @keyframes flicker {
+      0% { transform: translateX(-50%) scale(1); }
+      50% { transform: translateX(-50%) scale(1.1); }
+      100% { transform: translateX(-50%) scale(1); }
+    }
+
+    .blow-text {
+      margin-top: 20px;
+      font-size: 1.2em;
+      animation: pulse 1s infinite;
+    }
+
+    .final-message {
+      font-size: 1.2em;
+      line-height: 1.6em;
+      margin-top: 20px;
+      padding: 20px;
+    }
+  </style>
+</head>
+<body>
+
+<audio id="bgMusic" autoplay loop>
+  <source src="https://dl.dropboxusercontent.com/scl/fi/s9v8rfdthjv4odwl8hxo1/Lana-Del-Rey-Cinnamon-Girl.mp3?rlkey=3d76exqrxj5b5oe9c60y34r5d&dl=0" type="audio/mpeg">
+</audio>
+
+<!-- animasi love -->
+<div class="heart" style="top: 10%; left: 20%;"></div>
+<div class="heart" style="top: 30%; left: 70%;"></div>
+<div class="heart" style="top: 60%; left: 40%;"></div>
+<div class="heart" style="top: 80%; left: 60%;"></div>
+
+<!-- Layar awal -->
+<div class="screen" id="screen1">
+  <div class="message">HAI CANTIK INI KADO BUAT KAMU, BUKA LAGI PADA</div>
+  <div class="countdown" id="countdown"></div>
+  <button class="continue-button" onclick="goToBirthday()">Klik disini Uly❤️</button>
+</div>
+
+<!-- Layar lilin -->
+<div class="screen" id="screen2" style="display:none">
+  <div class="title">HAPPY BIRTHDAY FOR 20 YEARS</div>
+  <div class="name">YULIANA</div>
+  <div class="candle" id="candle">
+    <div class="flame" id="flame"></div>
+  </div>
+  <div class="blow-text">tiup disini 🎂</div>
+</div>
+
+<script>
+  function updateCountdown() {
+    const eventDate = new Date('2025-07-08T00:00:00');
+    const now = new Date();
+    const diff = eventDate - now;
+
+    if (diff <= 0) {
+      document.getElementById('countdown').innerText = "Selamat Ulang Tahun!";
+      return;
+    }
+
+    const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+    const hours = Math.floor((diff / (1000 * 60 * 60)) % 24);
+    const minutes = Math.floor((diff / (1000 * 60)) % 60);
+    const seconds = Math.floor((diff / 1000) % 60);
+
+    document.getElementById('countdown').innerText = `${days}:${hours}:${minutes}:${seconds}`;
+  }
+
+  function goToBirthday() {
+    document.getElementById('screen1').style.display = 'none';
+    document.getElementById('screen2').style.display = 'flex';
+
+    setTimeout(() => {
+      const flame = document.getElementById("flame");
+      if (flame) flame.style.display = "none";
+
+      const screen2 = document.getElementById("screen2");
+      screen2.innerHTML = `<div class="name">ih mulutnya bau😭</div>`;
+
+      setTimeout(() => {
+        screen2.innerHTML = `
+          <div class="final-message">
+            Selamat ulang tahun Yuliana ❤️<br><br>
+            Aku bangga bisa liat kamu bertahan sampe detik ini,<br>
+            terus bertahan ya jangan sampe nyerah.<br>
+            Semoga kamu diberikan umur yang panjang,<br>
+            sehat selalu dan rezeki yang lancar.<br><br>
+            Perpisahan kita bukan akhir dari semuanya,<br>
+            aku yakin hidup kamu pasti jauh bahagia tanpa ada aku di sisi kamu.<br><br>
+            I love you Uly cantikku pinkykuu ❤️<br><br>
+            Makasih yaa udah mau buat memori di hidup aku,<br>
+            memori yang gabakalan bisa aku lupain.<br>
+            Pelukan hangat dari kamu dan manisnya raut wajah kamu pas senyum<br>
+            bikin kehidupan aku lebih berarti.
+          </div>
+        `;
+      }, 3000);
+    }, 3000);
+  }
+
+  setInterval(updateCountdown, 1000);
+  updateCountdown();
+</script>
+</body>
+</html>
