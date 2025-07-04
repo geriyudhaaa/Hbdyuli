@@ -40,28 +40,90 @@
       left: 50%;
       transform: translate(-50%, -50%);
       text-align: center;
+      display: none;
+      padding: 10px;
+    }
+    .visible {
+      display: block;
+      z-index: 2;
     }
     #countdown {
-      font-size: 2rem;
+      font-size: 2.5rem;
       margin-bottom: 20px;
     }
     button {
       padding: 10px 20px;
-      font-size: 1rem;
+      font-size: 1.2rem;
       background: red;
       color: white;
       border: none;
       cursor: pointer;
       border-radius: 10px;
-      margin-top: 20px;
-    }
-    .hidden {
-      display: none;
+      margin: 10px;
     }
     .audio-control {
       position: absolute;
       top: 20px;
       right: 20px;
+      z-index: 10;
+    }
+    .candle {
+      position: relative;
+      width: 20px;
+      height: 100px;
+      background: #ff6666;
+      margin: 20px auto;
+      border-radius: 5px;
+    }
+    .flame {
+      position: absolute;
+      top: -25px;
+      left: 50%;
+      width: 15px;
+      height: 25px;
+      background: orange;
+      border-radius: 50%;
+      animation: flicker 0.2s infinite alternate;
+      transform: translateX(-50%);
+    }
+    @keyframes flicker {
+      from { transform: translateX(-50%) scale(1); }
+      to { transform: translateX(-50%) scale(1.1); opacity: 0.8; }
+    }
+    .final-text {
+      font-size: 0.9rem;
+      max-width: 90%;
+      margin: 10px auto 0;
+      padding: 0 10px;
+      line-height: 1.6;
+      text-align: center;
+    }
+    .button-row {
+      margin-top: 20px;
+    }
+    .button-row button {
+      display: inline-block;
+      margin: 0 10px;
+    }
+    .heart {
+      position: fixed;
+      top: -20px;
+      width: 20px;
+      height: 20px;
+      font-size: 20px;
+      color: red;
+      animation: fall 6s linear infinite;
+      pointer-events: none;
+    }
+    @keyframes fall {
+      0% {
+        transform: translateY(0);
+        opacity: 1;
+      }
+      100% {
+        transform: translateY(100vh);
+        opacity: 0;
+      }
     }
   </style>
 </head>
@@ -69,37 +131,73 @@
   <div class="heartbeat"></div>
   <div class="audio-control">
     <audio id="bgMusic" src="https://files.catbox.moe/vamceq.mp3"></audio>
-    <button onclick="toggleMusic()">Putar / Hentikan Lagu</button>
-  </div>  <div class="centered" id="page1">
-    <div id="countdown"></div>
+    <button onclick="toggleMusic()">Play</button>
+  </div>  <div class="centered visible" id="page1">
+    <div id="countdown">00:00:00:00</div>
     <h1>HAPPY BIRTHDAY FOR 20 YEARS YULIANA❤️</h1>
-    <button onclick="nextPage()">Klik Disini</button>
-  </div>  <div class="centered hidden" id="page2">
-    <img src="https://i.ibb.co/9b1bgzW/cake-candle.gif" width="300" />
+    <button onclick="nextPage()">➡️</button>
+  </div>  <div class="centered" id="page2">
+    <div class="candle">
+      <div class="flame"></div>
+    </div>
     <h2>Tiup lilinnya</h2>
-  </div>  <div class="centered hidden" id="page3">
+    <div class="button-row">
+      <button onclick="goBack('page1')">⬅️</button>
+      <button onclick="showPage('page3')">➡️</button>
+    </div>
+  </div>  <div class="centered" id="page3">
     <h1>IH MULUTNYA BAUU😭</h1>
-  </div>  <div class="centered hidden" id="page4">
+    <div class="button-row">
+      <button onclick="goBack('page2')">⬅️</button>
+      <button onclick="showPage('page4')">➡️</button>
+    </div>
+  </div>  <div class="centered" id="page4">
     <h1>HAPPY BIRTHDAY YULIANA ❤️🎉</h1>
-    <p style="max-width: 600px; margin-top: 20px;">
-      Selamat atas bertambahnya umur ke 20 tahun semoga cita cita kamu tercapai, keinginan kamu terkabul rejekimu lancar sehat selalu, aku pasti doain yang terbaik buat kamu dan keluarga mu.<br><br>
-      Jangan nyerah ya Yul, harus tetep semangat dan jangan pantang mundur, aku bangga, bangga banget liat kamu udah bisa sampe titik ini.<br><br>
-      Aku juga seneng banget bisa jadi temen kamu bahkan pasangan kamu ya walaupun kamu ga ngakuin sih wkwk, tapi gapapa aku makasi atas memori yang kamu bikin di kehidupan aku, memori yang gabakalan pernah keganti sama siapapun. Pelukan hangatmu, manisnya muka kamu apalagi pas senyum behh, cubitan kamu, senderan kamu, aku kangen kamu, tapi aku gamau disakitin lagi.<br><br>
-      Aku harus pergi sekarang, banyak yang perlu aku kejar, semoga kita ketemu lagi entah dimana atau di kehidupan yang mana.<br><br>
-      Janji sama aku jangan sedih terus, kedepannya harus jadi pribadi yang lebih baik lagi yaa, yang lebih peduli ke orang lain, lebih sayang ke diri sendiri, lebih sayang ke orang tua, lebih bisa ngendaliin emosi pas lagi marah, lebih bisa ngehargain usaha orang lain, jangan jadi orang jahatt lagii yaa.<br><br>
+    <div class="final-text">
+      Selamat atas bertambahnya umur ke 20 tahun. Semoga cita-cita kamu tercapai, keinginan kamu terkabul, rejekimu lancar, dan sehat selalu.<br><br>
+      Aku pasti doain yang terbaik buat kamu dan keluargamu.
+    </div>
+    <div class="button-row">
+      <button onclick="goBack('page3')">⬅️</button>
+      <button onclick="showPage('page5')">➡️</button>
+    </div>
+  </div>  <div class="centered" id="page5">
+    <div class="final-text">
+      Jangan nyerah ya Yul, harus tetap semangat dan jangan pantang mundur. Aku bangga, bangga banget lihat kamu udah bisa sampai titik ini.<br><br>
+      Aku juga seneng banget bisa jadi temen kamu, bahkan pasangan kamu — ya walaupun kamu nggak ngakuin sih wkwk.
+    </div>
+    <div class="button-row">
+      <button onclick="goBack('page4')">⬅️</button>
+      <button onclick="showPage('page6')">➡️</button>
+    </div>
+  </div>  <div class="centered" id="page6">
+    <div class="final-text">
+      Tapi gapapa, aku makasih atas memori yang kamu bikin di kehidupan aku. Memori yang nggak bakal pernah keganti sama siapapun: pelukan hangatmu, manisnya muka kamu apalagi pas senyum — behh, cubitan kamu, senderan kamu.<br><br>
+      Aku kangen kamu, tapi aku gamau disakitin lagi.
+    </div>
+    <div class="button-row">
+      <button onclick="goBack('page5')">⬅️</button>
+      <button onclick="showPage('page7')">➡️</button>
+    </div>
+  </div>  <div class="centered" id="page7">
+    <div class="final-text">
+      Aku harus pergi sekarang, banyak yang perlu aku kejar. Semoga kita ketemu lagi, entah di mana atau di kehidupan yang mana.<br><br>
+      Janji sama aku, jangan sedih terus. Ke depannya harus jadi pribadi yang lebih baik lagi ya: yang lebih peduli ke orang lain, lebih sayang ke diri sendiri, lebih sayang ke orang tua, lebih bisa ngendaliin emosi pas lagi marah, lebih bisa menghargai usaha orang lain. Jangan jadi orang jahat lagi yaa.<br><br>
       ily uly❤️
-    </p>
+    </div>
+    <div class="button-row">
+      <button onclick="goBack('page6')">⬅️</button>
+    </div>
   </div>  <script>
     const countdown = document.getElementById("countdown");
     const targetDate = new Date("July 8, 2025 00:00:00").getTime();
 
-    const timer = setInterval(function () {
-      const now = new Date().getTime();
+    function updateCountdown() {
+      const now = Date.now();
       const distance = targetDate - now;
 
       if (distance <= 0) {
-        clearInterval(timer);
-        countdown.innerHTML = "SELAMAT ULANG TAHUN YULIANA❤️";
+        countdown.innerHTML = "00:00:00:00";
         return;
       }
 
@@ -108,22 +206,26 @@
       const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
       const seconds = Math.floor((distance % (1000 * 60)) / 1000);
 
-      countdown.innerHTML = `${days} hari ${hours} jam ${minutes} menit ${seconds} detik`;
-    }, 1000);
+      countdown.innerHTML = `${String(days).padStart(2, '0')}:${String(hours).padStart(2, '0')}:${String(minutes).padStart(2, '0')}:${String(seconds).padStart(2, '0')}`;
+
+      requestAnimationFrame(updateCountdown);
+    }
+
+    updateCountdown();
+
+    function showPage(pageId) {
+      const pages = document.querySelectorAll(".centered");
+      pages.forEach(p => p.classList.remove("visible"));
+      const target = document.getElementById(pageId);
+      target.classList.add("visible");
+    }
+
+    function goBack(pageId) {
+      showPage(pageId);
+    }
 
     function nextPage() {
-      document.getElementById("page1").classList.add("hidden");
-      document.getElementById("page2").classList.remove("hidden");
-
-      setTimeout(() => {
-        document.getElementById("page2").classList.add("hidden");
-        document.getElementById("page3").classList.remove("hidden");
-
-        setTimeout(() => {
-          document.getElementById("page3").classList.add("hidden");
-          document.getElementById("page4").classList.remove("hidden");
-        }, 4000);
-      }, 3000);
+      showPage("page2");
     }
 
     function toggleMusic() {
@@ -134,5 +236,15 @@
         music.pause();
       }
     }
+
+    // Falling heart emoji animation
+    setInterval(() => {
+      const heart = document.createElement("div");
+      heart.classList.add("heart");
+      heart.innerText = "❤️";
+      heart.style.left = Math.random() * 100 + "vw";
+      document.body.appendChild(heart);
+      setTimeout(() => heart.remove(), 7000);
+    }, 300);
   </script></body>
 </html>
